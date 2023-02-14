@@ -31,7 +31,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha
+            type=sha,prefix=0.0.0-g
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -73,7 +73,7 @@ jobs:
 
       - name: Update version
         run: |
-          GIT_HASH=$(git rev-parse --short=8 HEAD)
+          GIT_HASH=$(git rev-parse --short HEAD)
           TAG="0.0.0-g$GIT_HASH" make version-set
 
       - name: Run chart-releaser
