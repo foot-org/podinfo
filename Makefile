@@ -72,17 +72,17 @@ push-container:
 version-set:
 	@next="$(TAG)" && \
 	current="$(VERSION)" && \
-	/usr/bin/sed -i '' "s/$$current/$$next/g" pkg/version/version.go && \
-	/usr/bin/sed -i '' "s/tag: $$current/tag: $$next/g" charts/podinfo/values.yaml && \
-	/usr/bin/sed -i '' "s/tag: $$current/tag: $$next/g" charts/podinfo/values-prod.yaml && \
-	/usr/bin/sed -i '' "s/appVersion: $$current/appVersion: $$next/g" charts/podinfo/Chart.yaml && \
-	/usr/bin/sed -i '' "s/version: $$current/version: $$next/g" charts/podinfo/Chart.yaml && \
-	/usr/bin/sed -i '' "s/podinfo:$$current/podinfo:$$next/g" kustomize/deployment.yaml && \
-	/usr/bin/sed -i '' "s/podinfo:$$current/podinfo:$$next/g" deploy/webapp/frontend/deployment.yaml && \
-	/usr/bin/sed -i '' "s/podinfo:$$current/podinfo:$$next/g" deploy/webapp/backend/deployment.yaml && \
-	/usr/bin/sed -i '' "s/podinfo:$$current/podinfo:$$next/g" deploy/bases/frontend/deployment.yaml && \
-	/usr/bin/sed -i '' "s/podinfo:$$current/podinfo:$$next/g" deploy/bases/backend/deployment.yaml && \
-	/usr/bin/sed -i '' "s/$$current/$$next/g" cue/main.cue && \
+	sed -i "s/$$current/$$next/g" pkg/version/version.go && \
+	sed -i "s/tag: $$current/tag: $$next/g" charts/podinfo/values.yaml && \
+	sed -i "s/tag: $$current/tag: $$next/g" charts/podinfo/values-prod.yaml && \
+	sed -i "s/appVersion: $$current/appVersion: $$next/g" charts/podinfo/Chart.yaml && \
+	sed -i "s/version: $$current/version: $$next/g" charts/podinfo/Chart.yaml && \
+	sed -i "s/podinfo:$$current/podinfo:$$next/g" kustomize/deployment.yaml && \
+	sed -i "s/podinfo:$$current/podinfo:$$next/g" deploy/webapp/frontend/deployment.yaml && \
+	sed -i "s/podinfo:$$current/podinfo:$$next/g" deploy/webapp/backend/deployment.yaml && \
+	sed -i "s/podinfo:$$current/podinfo:$$next/g" deploy/bases/frontend/deployment.yaml && \
+	sed -i "s/podinfo:$$current/podinfo:$$next/g" deploy/bases/backend/deployment.yaml && \
+	sed -i "s/$$current/$$next/g" cue/main.cue && \
 	echo "Version $$next set in code, deployment, chart and kustomize"
 
 release:
